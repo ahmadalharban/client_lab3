@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/alharbanahmed4000gmail.com/Desktop/uni docum/csci_hw/csci3761/project3/client_lab3",
+      "program": "/Users/alharbanahmed4000gmail.com/Desktop/uni docum/csci_hw/csci3761/project3/client_lab3/build/Debug/outDebug"
+    }
+  ]
+}
