@@ -50,7 +50,7 @@ int create_and_connect_socket(const char *serverIP, int port){
     server_addr.sin_port = htons(port);
 
     //convert IP address to binary
-    if(inet_ton(AF_INET, serverIP, &server_addr.sin_addr)<= 0){
+    if(inet_pton(AF_INET, serverIP, &server_addr.sin_addr)<= 0){
         perror("invalid IP address");
         close(sockfd);
         return -1;
@@ -71,7 +71,7 @@ int create_and_connect_socket(const char *serverIP, int port){
 //initialize the openssl library
 void init_openssl(){
     SSL_library_init(); //initialize the SSL library
-    OpenSSl_add_all_algorithm(); //load cryptographic algorithms
+    OpenSSl_add_all_algorithms(); //load cryptographic algorithms
     SSL_load_error_strings(); //load readable error messages
 }
 
@@ -117,7 +117,7 @@ SSL *create_SSL_connection(SSL_CTX *ctx, int sockfd){
     if (SSL_connect(ssl) <= 0){
         fprintf(stderr, "SSL handshake failed\n");
         ERR_print_errors_fp(stderr);
-        SSL_ffree(ssl);
+        SSL_free(ssl);
         return NULL;
     }
 
@@ -126,7 +126,7 @@ SSL *create_SSL_connection(SSL_CTX *ctx, int sockfd){
 }
 
 //send secure message 
-int send_secure_message(SSL *ssl const char *message){
+int send_secure_message(SSL *ssl, const char *message){
     int bytes_sent;
 
     //send encrypted data through the SSL connection
@@ -188,8 +188,8 @@ int main(){
     char message[MAX_MSG_LEN + 1];
 
     int sockfd = -1; //initialize to invalid value in case something fails
-    SSL_CTX *ctx = NULL //start as NULL so cleanup is safe
-    SSL *ssl = NULL //start as NULL so clean up is safe
+    SSL_CTX *ctx = NULL; //start as NULL so cleanup is safe
+    SSL *ssl = NULL; //start as NULL so clean up is safe
 
     //get input from user
     get_user_input(serverIP, &port, message);
