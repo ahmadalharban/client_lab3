@@ -222,7 +222,7 @@ int main(){
     }
 
     //send user message to server
-    if (send_secure_message(ssl) < 0){
+    if (send_secure_message(ssl, message) < 0){
         fprintf(stderr, "Failed to send secure message\n");
         cleanup(ssl, ctx, sockfd);
         return 1;
