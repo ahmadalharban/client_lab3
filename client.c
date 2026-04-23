@@ -134,7 +134,7 @@ int send_secure_message(SSL *ssl, const char *message){
     if (bytes_sent <= 0) {
         fprintf(stderr, "SSL_write failed\n");
         ERR_print_errors_fp(stderr);
-        return -1
+        return -1;
     }
     return bytes_sent;
 
@@ -239,9 +239,3 @@ int main(){
     cleanup(ssl, ctx, sockfd);
     return 0;
 }
-
-
-
-
-
-
