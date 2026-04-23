@@ -71,7 +71,7 @@ int create_and_connect_socket(const char *serverIP, int port){
 //initialize the openssl library
 void init_openssl(){
     SSL_library_init(); //initialize the SSL library
-    OpenSSL_add_all_algorithms(); //load cryptographic algorithms
+    OpenSSl_add_all_algorithms(); //load cryptographic algorithms
     SSL_load_error_strings(); //load readable error messages
 }
 
